@@ -3,9 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, useContext } from "react";
 import Modal from "./Modal";
 import ErrorBoundary from "./ErrorBoundary";
-import fetchPet from "./fetchPet";
+import fetchPet from "../api/fetchPet";
 import Carousel from "./Carousel";
-import AdoptedPetContext from "./AdoptedPetContext";
+import AdoptedPetContext from "../contexts/AdoptedPetContext";
 
 const Details = () => {
   const navigate = useNavigate();
