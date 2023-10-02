@@ -4,38 +4,43 @@ import Results from "./Results";
 import AdoptedPetContext from "../contexts/AdoptedPetContext";
 import fetchSearch from "../api/fetchSearch";
 import useBreedList from "../hooks/useBreedList";
+import { Animal } from "../types/APIResponses";
 
-const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
+const ANIMALS: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
   const [adoptedPet] = useContext(AdoptedPetContext);
-  const [requestParams, setRequestParams] = useState({
+  const [requestParams, setRequestParams] = useState<{
+    location: string;
+    animal: string;
+    breed: string;
+  }>({
     location: "",
     animal: "",
     breed: "",
   });
 
-  const results = useQuery(["breeds", requestParams], fetchSearch);
+  const results = useQuery(["search", requestParams], fetchSearch);
   const pets = results?.data?.pets ?? [];
 
-  const [animal, setAnimal] = useState("");
+  const [animal, setAnimal] = useState("" as Animal);
   const [breeds] = useBreedList(animal);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const obj = {
-      animal: formData.get("animal") ?? "",
-      breed: formData.get("breed") ?? "",
-      location: formData.get("location") ?? "",
-    };
-
-    setRequestParams(obj);
-  };
 
   return (
     <div className="search-params">
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const formData = new FormData(e.currentTarget);
+          const obj = {
+            animal: formData.get("animal")?.toString() ?? "",
+            breed: formData.get("breed")?.toString() ?? "",
+            location: formData.get("location")?.toString() ?? "",
+          };
+
+          setRequestParams(obj);
+        }}
+      >
         {adoptedPet ? (
           <div className="pet image-container">
             <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
@@ -56,10 +61,10 @@ const SearchParams = () => {
             name="animal"
             id="animal"
             onChange={(e) => {
-              setAnimal(e.target.value);
+              setAnimal(e.target.value as Animal);
             }}
             onBlur={(e) => {
-              setAnimal(e.target.value);
+              setAnimal(e.target.value as Animal);
             }}
           >
             <option />

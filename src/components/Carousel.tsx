@@ -1,8 +1,12 @@
 import { useState } from "react";
 
+// above Carousel
+interface ICarouselProps {
+  images: string[];
+}
 const Carousel = ({
   images = ["http://pets-images.dev-apis.com/pets/none.jpg"],
-}) => {
+}: ICarouselProps) => {
   const [active, setActive] = useState(0);
 
   return (
@@ -12,7 +16,7 @@ const Carousel = ({
         {images.map((photo, index) => (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
           <img
-            onClick={() => setActive(index)}
+            onClick={() => setActive(+index)}
             onKeyUp={(e) => {
               if (e.key === "Enter") {
                 setActive(index);
