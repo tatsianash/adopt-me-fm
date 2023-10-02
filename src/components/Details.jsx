@@ -24,8 +24,18 @@ const Details = () => {
 
   const pet = results.data.pets[0];
 
+  // .details {
+  //   width: 1100px;
+  //   margin: 0 auto;
+  //   padding: 15px;
+  //   margin-bottom: 25px;
+  //   border-radius: 6px;
+  //   background: #faeff0;
+  //   box-shadow: 0px 0px 12px #aaa, -0px -0px 12px #fff;
+  // }
+
   return (
-    <div className="details">
+    <div className="w-full m-auto p-4 border-radius flex flex-row gap-4">
       <Carousel images={pet.images} />
       <div>
         <h1>{pet.name}</h1>
