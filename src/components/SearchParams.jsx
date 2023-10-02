@@ -35,10 +35,7 @@ const SearchParams = () => {
 
   return (
     <div className="search-params">
-      <form
-        className="p-10 mb-10 rounded-lg bg-gray-200 shadow-lg flex flex-col justify-center items-center"
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         {adoptedPet ? (
           <div className="pet image-container">
             <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
@@ -51,7 +48,6 @@ const SearchParams = () => {
             type="text"
             id="location"
             placeholder="location"
-            className="w-60 mb-5 block"
           />
         </label>
         <label htmlFor="animal">
@@ -65,7 +61,6 @@ const SearchParams = () => {
             onBlur={(e) => {
               setAnimal(e.target.value);
             }}
-            className="w-60 mb-5 block"
           >
             <option />
             {ANIMALS.map((animal) => (
@@ -78,12 +73,7 @@ const SearchParams = () => {
 
         <label htmlFor="breed">
           Breed
-          <select
-            name="breed"
-            disabled={breeds.length === 0}
-            id="breed"
-            className="w-60 mb-5 block disabled:opacity-50"
-          >
+          <select name="breed" disabled={breeds.length === 0} id="breed">
             <option />
             {breeds.map((breed) => (
               <option key={breed} value={breed}>
@@ -92,12 +82,7 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <button
-          type="submit"
-          className="rounded px-6 py-2 text-white hover:opacity-50 border-none bg-orange-500"
-        >
-          Submit
-        </button>
+        <button type="submit">Sumbit</button>
       </form>
 
       <Results pets={pets} />

@@ -6,13 +6,9 @@ const Carousel = ({
   const [active, setActive] = useState(0);
 
   return (
-    <div className="flex justify-around align-center h-[400px] mt-2 gap-4">
-      <img
-        src={images[active]}
-        alt="animal"
-        className="max-w-[400px] rounded-lg"
-      />
-      <div className="min-w-[100px]">
+    <div className="carousel">
+      <img src={images[active]} alt="animal" />
+      <div className="carousel-smaller">
         {images.map((photo, index) => (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
           <img
@@ -24,9 +20,7 @@ const Carousel = ({
             }}
             key={photo}
             src={photo}
-            className={
-              index === active ? "active rounded-lg pb-1" : "rounded-lg pb-1"
-            }
+            className={index === active ? "active" : ""}
             alt="animal thumbnail"
             data-index={index}
           />
