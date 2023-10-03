@@ -82,7 +82,7 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <button type="submit">Sumbit</button>
+        <button type="submit">Submit</button>
       </form>
 
       <Results pets={pets} />
